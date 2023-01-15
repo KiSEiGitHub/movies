@@ -1,10 +1,12 @@
 import {
-    Box, Flex, Heading,
+    Box,
+    Flex,
+    Heading,
     HStack,
     Image,
     Link,
     Tag,
-    Text
+    Text,
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { TbFlame } from "react-icons/tb";
@@ -59,7 +61,12 @@ function Movies({ movie }: any) {
                     </Text>
                 </HStack>
             </Box>
-            <Flex mt={20} px="55px" justifyContent="space-between" maxW='1920px'>
+            <Flex
+                mt={20}
+                px="55px"
+                justifyContent="space-between"
+                maxW="1920px"
+            >
                 <Box>
                     <Heading mb={5}>Cast</Heading>
                     <Swiper
@@ -74,12 +81,14 @@ function Movies({ movie }: any) {
                     >
                         {movie.cast.map((item: any, key: any) => (
                             <SwiperSlide key={key}>
-                                <Image
-                                    src={item.photo}
-                                    alt="ok"
-                                    w="120px"
-                                    borderRadius="lg"
-                                />
+                                <Link href={`/actor/${item.id}`}>
+                                    <Image
+                                        src={item.photo}
+                                        alt="ok"
+                                        w="120px"
+                                        borderRadius="lg"
+                                    />
+                                </Link>
                                 <Heading size="sm" mt={3} textAlign="center">
                                     {item.name}
                                 </Heading>
@@ -97,21 +106,21 @@ function Movies({ movie }: any) {
                         }}
                         style={{
                             width: "700px",
-                            height: '254px'
+                            height: "254px",
                         }}
                     >
                         {movie.similarMovies.map((item: any, key: any) => (
                             <SwiperSlide key={key}>
                                 <Link href={`/movie/${item.id}`}>
-                                <Image
-                                    src={item.photo}
-                                    alt="ok"
-                                    w="100%"
-                                    h='full'
-                                    borderRadius="lg"
-                                    objectFit='cover'
+                                    <Image
+                                        src={item.photo}
+                                        alt="ok"
+                                        w="100%"
+                                        h="full"
+                                        borderRadius="lg"
+                                        objectFit="cover"
                                     />
-                                    </Link>
+                                </Link>
                             </SwiperSlide>
                         ))}
                     </Swiper>

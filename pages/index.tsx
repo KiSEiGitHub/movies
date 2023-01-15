@@ -44,6 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
     );
     const { results } = await res.json();
+
     results.forEach(
         (obj: any) => (
             (obj.img = "https://image.tmdb.org/t/p/w500/" + obj["poster_path"]),
