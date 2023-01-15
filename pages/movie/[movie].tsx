@@ -17,7 +17,7 @@ function Movies({ movie }: any) {
     return (
         <Box
             bgImage={`https://image.tmdb.org/t/p/w500/${movie.all.backdrops[0]["file_path"]}`}
-            h="auto"
+            h="100vh"
             bgSize="cover"
         >
             <Box maxW="960px" px="55px" pt={10} textShadow="1px 1px #000">
@@ -59,7 +59,7 @@ function Movies({ movie }: any) {
                     </Text>
                 </HStack>
             </Box>
-            <Flex mt={20} px="55px" justifyContent="space-between">
+            <Flex mt={20} px="55px" justifyContent="space-between" maxW='1920px'>
                 <Box>
                     <Heading mb={5}>Cast</Heading>
                     <Swiper
