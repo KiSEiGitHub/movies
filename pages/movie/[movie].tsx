@@ -159,12 +159,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   data.similarMovies.forEach(
     (obj: any) =>
-      (obj.photo = "https://image.tmdb.org/t/p/w500/" + obj["poster_path"])
+      (obj.photo = "https://image.tmdb.org/t/p/w780/" + obj["poster_path"])
   );
 
   data.cast.forEach(
     (obj: any) =>
-      (obj.photo = "https://image.tmdb.org/t/p/w500/" + obj["profile_path"])
+      (obj.photo = "https://image.tmdb.org/t/p/w780/" + obj["profile_path"])
   );
 
   return {
