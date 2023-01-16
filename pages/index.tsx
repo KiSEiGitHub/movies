@@ -1,9 +1,10 @@
 import { Box, Flex, Image, Link } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
+import Layout from "../components/Layout";
 
 function Home({ movies }: any) {
     return (
-        <>
+        <Layout title='Home'>
             <Flex
                 flexWrap="wrap"
                 justifyContent="center"
@@ -33,7 +34,7 @@ function Home({ movies }: any) {
                     </Box>
                 ))}
             </Flex>
-        </>
+        </Layout>
     );
 }
 
