@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { TbFlame } from "react-icons/tb";
+import { Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,6 +24,8 @@ function Movies({ movie }: any) {
         bgImage={`https://image.tmdb.org/t/p/w1280/${movie.all.backdrops[0]["file_path"]}`}
         h="100vh"
         bgSize="cover"
+        bgBlendMode="darken"
+        bgPos="center"
       >
         <Box maxW="960px" px="55px" pt={10} textShadow="1px 1px #000">
           <Heading size="4xl">{movie.title}</Heading>
@@ -31,7 +34,7 @@ function Movies({ movie }: any) {
           </Text>
           <HStack mt={10} spacing={3}>
             <Tag bg="pin" fontWeight={400} textShadow="none">
-              2h30
+              {movie.runtime} min
             </Tag>
             <Text fontWeight={600}>
               {movie["production_companies"][0].name}
@@ -65,10 +68,18 @@ function Movies({ movie }: any) {
         </Box>
         <Flex mt={20} px="55px" justifyContent="space-between" maxW="1920px">
           <Box>
-            <Heading mb={5}>Cast</Heading>
+            <HStack spacing={5}>
+              <Heading mb={5}>Cast</Heading>
+              <Text color='pin'>Voir tous les casts</Text>
+            </HStack>
             <Swiper
-              slidesPerView={6}
+              slidesPerView={4}
               spaceBetween={30}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay]}
               pagination={{
                 clickable: true,
               }}
@@ -84,8 +95,12 @@ function Movies({ movie }: any) {
                       alt="ok"
                       w="120px"
                       borderRadius="lg"
+                      mx="auto"
                     />
                   </Link>
+                  <Tag size="md" bg="pin" mx="auto" mt={3}>
+                    {item.character}
+                  </Tag>
                   <Heading size="sm" mt={3} textAlign="center">
                     {item.name}
                   </Heading>
@@ -98,6 +113,11 @@ function Movies({ movie }: any) {
             <Swiper
               slidesPerView={3}
               spaceBetween={30}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay]}
               pagination={{
                 clickable: true,
               }}
@@ -154,7 +174,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { results: dataSim } = await resSim.json();
 
   data.all = dataImg;
-  data.cast = cast;
+  data.cast = cast.slice(0, 6);
   data.similarMovies = dataSim;
 
   data.similarMovies.forEach(

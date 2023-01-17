@@ -68,7 +68,7 @@ function Actor({ actor }: any) {
           </GridItem>
         </Grid>
         <Divider my={5} />
-        <Heading>Cast</Heading>
+        <Heading>Movies Credits</Heading>
         <Box mt={5}>
           <Swiper
             slidesPerView={3}

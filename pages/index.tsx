@@ -1,8 +1,18 @@
-import { Box, Flex, Image, Link } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 
 function Home({ movies }: any) {
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
+
+    if (isLoading) {
+        return <Text>CHARGEMENT</Text>
+    }
+
     return (
         <Layout title='Home'>
             <Flex
