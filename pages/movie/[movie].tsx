@@ -14,10 +14,12 @@ import { Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import AllCasts from "../../components/AllCasts";
 import Layout from "../../components/Layout";
 
 function Movies({ movie }: any) {
   console.log(movie);
+  const mainCast = movie.cast.slice(0, 9);
   return (
     <Layout title={movie.title}>
       <Box
@@ -68,9 +70,9 @@ function Movies({ movie }: any) {
         </Box>
         <Flex mt={20} px="55px" justifyContent="space-between" maxW="1920px">
           <Box>
-            <HStack spacing={5}>
+            <HStack spacing={3}>
               <Heading mb={5}>Cast</Heading>
-              <Text color='pin'>Voir tous les casts</Text>
+              <AllCasts title={movie.title} casts={movie.cast} />
             </HStack>
             <Swiper
               slidesPerView={4}
@@ -87,7 +89,7 @@ function Movies({ movie }: any) {
                 width: "700px",
               }}
             >
-              {movie.cast.map((item: any, key: any) => (
+              {mainCast.map((item: any, key: any) => (
                 <SwiperSlide key={key}>
                   <Link href={`/actor/${item.id}`}>
                     <Image
@@ -174,7 +176,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { results: dataSim } = await resSim.json();
 
   data.all = dataImg;
-  data.cast = cast.slice(0, 6);
+  data.cast = cast;
   data.similarMovies = dataSim;
 
   data.similarMovies.forEach(
