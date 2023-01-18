@@ -38,9 +38,6 @@ function Movies({ movie }: any) {
             <Tag bg="pin" fontWeight={400} textShadow="none">
               {movie.runtime} min
             </Tag>
-            <Text fontWeight={600}>
-              {movie["production_companies"][0].name}
-            </Text>
           </HStack>
           <HStack mt={4} spacing={3}>
             <Text fontWeight={600}>{movie["release_date"]}</Text>

@@ -49,12 +49,12 @@ function AllCasts({ title, casts }: any) {
                       borderRadius="md"
                     />
                   </Link>
-                  <Heading textAlign="center" fontWeight={400} mt={3} size="sm">
-                    {item.character}
-                  </Heading>
-                  <Divider my={3}/>
-                  <Heading textAlign="center" size="sm">
+                  <Heading textAlign="center" size="sm" mt={3}>
                     <Link href={`/actor/${item.id}`}>{item.name}</Link>
+                  </Heading>
+                  <Divider my={3} />
+                  <Heading textAlign="center" fontWeight={400} size="sm">
+                    {item.character}
                   </Heading>
                 </Box>
               ))}
